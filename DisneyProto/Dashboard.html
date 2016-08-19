@@ -1,0 +1,1141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0049)http://10.51.25.197:8097/Performance/login.action -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Functional QA Dashboard</title>
+<link rel="stylesheet" href="./Dashboard_files/demo.css">
+<link rel="stylesheet" href="./Dashboard_files/navbar.css">
+<link rel="stylesheet" href="./Dashboard_files/main.css" type="text/css">
+<link rel="stylesheet" href="./Dashboard_files/jquery-ui.css">
+<link rel="stylesheet" href="./Dashboard_files/style.min.css">
+<link rel="stylesheet" type="text/css" src="jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="./Dashboard_files/c3.css">
+
+<script type="text/javascript" src="./Dashboard_files/jquery-1.10.2.min.js"></script>
+<script src="./Dashboard_files/jquery-ui.js"></script>
+
+<script src="./Dashboard_files/script.js"></script>
+<script type="text/javascript" src="./Dashboard_files/jquery.dataTables.min.js"></script>
+   <script src="./Dashboard_files/d3.min.js" charset="utf-8"></script>
+    <script src="./Dashboard_files/c3.js"></script>
+    <script type="text/javascript" src="./Dashboard_files/crossfilter.js"></script>
+<script type="text/javascript" src="./Dashboard_files/dc.js"></script>
+<style>
+#riskImage{
+	padding-top: 10%;
+	float: left;
+	padding-left: 4%;
+}
+#riskDescription{
+	width: 47%;
+	height: 32%;
+    padding: 3%;
+    border: 5px gray;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 25px;
+/* 	padding-top: 60px; */
+	float: left;
+/* 	padding-left: 80px; */
+	text-align: initial;
+}
+#riskLevel{
+	text-align:center;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+#riskLevel2{
+	text-align:center;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+#riskLevel3{
+	text-align:center;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+#health{
+	text-align:center;
+	font-weight: bold;
+	font-size: 19px;
+	position: relative;
+right: 10%;
+}
+
+#decision{
+
+	position: relative;
+right: 10%;
+}
+
+#scheduleVariationHead{
+	text-align:center;
+	font-weight: bold;
+	font-size: 19px;
+}
+#envText{
+	width: 13px;
+
+    border: 5px gray;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 25px;
+	padding-top: 60px;
+	float: left;
+	padding-left: 59px;
+	text-align: initial;
+}
+#codeText{
+	width: 13px;
+
+    border: 5px gray;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 25px;
+	padding-top: 60px;
+	float: left;
+	padding-left: 59px;
+	text-align: initial;
+}
+
+#effortText{
+	width: 13px;
+    border: 5px gray;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 25px;
+	padding-top: 60px;
+	float: left;
+	padding-left: 59px;
+	text-align: initial;
+}
+#envCodEffTable{
+/* margin-top: 3%; */
+/* margin-left: 1%; */
+position: relative;
+right: 5%;
+top: 7%;
+}
+.v-separator
+{
+position: relative;
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 200px;
+    border-right: 1px solid #fafafa;
+    border-left: 1px solid #b4b4b4;
+    padding: 0;
+    margin-left:32%;
+    margin-top:4%;
+}
+
+ .divLast
+{
+   top: 0px;
+   margin:0px;
+   position: absolute;
+   /*padding: 0px 2px 2px 3px;*/
+   border-width: 1px;
+   border-bottom: 1px solid #b4b4b4;
+   width: 100%;
+   height: 41%;
+   z-index: -1;
+}
+
+</style>
+<style>
+
+/*----------------------------------------------
+CSS settings for HTML div Exact Center
+------------------------------------------------*/
+#abc {
+width:100%;
+height:100%;
+opacity:.99;
+top:0;
+left:0;
+display:none;
+position:fixed;
+background-color:#313131;
+overflow:auto
+}
+img#close {
+position: absolute;
+right: 22%;
+top: 4%;
+cursor: pointer;
+width: 3%;
+}
+div#popupContact {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+font-family:'Raleway',sans-serif;
+width:60%;
+height:60%;
+}
+#form1{
+max-width: 69%;
+min-width: 21%;
+padding: 10% 5%;
+max-height: 50%;
+border: 2px solid gray;
+border-radius: 14px;
+font-family: raleway;
+background-color: #FFF;
+}
+#notes_note{
+width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+input#myInput {
+    position:absolute;
+    top:8px;
+    left:8px;
+    width:300px;
+    height:25px;
+}
+div#readonly{
+    position:absolute;
+    top:14px;
+    left:14px;
+    color: #888;
+}
+
+</style>
+<script>
+var readOnlyLength;
+var InputMask = {
+	    init: function () {
+	        var divMask = document.getElementById("readonly");
+	        var inputField = document.getElementById("myInput");
+
+	        InputMask._input = inputField;
+	        InputMask._pos = 0;
+	        // resets the form
+	        inputField.value = "";
+
+	        divMask.addEventListener('click', InputMask.focusHandler, false );
+	        inputField.addEventListener('focus', InputMask.focusHandler, false );
+	        inputField.addEventListener('keydown', InputMask.keyInput, false );
+
+	    },
+
+	    focusHandler: function(event){
+	        InputMask._input.focus();
+
+	        var backup = InputMask._input.value.substr(20) || "";
+
+	        InputMask._input.value="                    " + backup;
+	    },
+
+	    keyInput: function ( event ) {
+	        var length_invalid = (InputMask._input.value.length == 20 ) ? true : false;
+	        var realString = InputMask._input.value.substr(20);
+	        var realLength = realString.length;
+
+	        // fix to mouse selection delete
+	        if ( InputMask._input.value.length < 20 ) {
+	            InputMask._input.value="                    ";
+	        }
+
+	        // backspace code = 8
+	        if (event.keyCode == 8 && length_invalid ) event.preventDefault();
+
+	        // left arrow key = 37
+	        if ( event.keyCode == 37 && (realLength + InputMask._pos) == 0 ) {
+	            event.preventDefault();
+	        } else if (event.keyCode == 37 && ( InputMask._pos >= (0 - realLength))) {
+	            InputMask._pos--;
+	        }
+
+	        // right arrow key = 39
+	        if ( event.keyCode == 39 && InputMask._pos < 0) InputMask._pos++;
+
+	        // enter = 13
+	        if ( event.keyCode == 13) {
+	            alert ( "Input Value: ["+ InputMask._input.value.substr(20) +"]");
+
+	            // reset
+	            InputMask.reset();
+	        }
+	    },
+	    reset: function(){
+	        var field = InputMask._input;
+
+	        field.value = "";
+	        field.blur();
+	    }
+	};
+
+	InputMask.init();
+
+//Function To Display Popup
+function div_show(note, release,releaseId) {
+
+	$("#notesError").text("");
+
+	document.getElementById('abc').style.display = "block";
+
+	var elem = document.getElementById("notes_note");
+	elem.value = note;
+
+	var elem2 = document.getElementById("notes_release");
+	elem2.value = release;
+
+	var elem3 = document.getElementById("releaseId");
+	elem3.value = releaseId;
+
+	 readOnlyLength = document.getElementById("notes_note").value.length;
+
+	 document.getElementById("notes_note").focus();
+
+//alert("test value "+readOnlyLength);
+}
+//Function to Hide Popup
+function div_hide(){
+	document.getElementById('abc').style.display = "none";
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready( function () {
+
+	$(window).load(function() {
+		$(".loader").fadeOut("slow");
+	});
+
+
+
+	//alert("test value "+readOnlyLength);
+	//var count = 1;
+	var readOnlyLength;
+	$('#notes_note').on('focus', function(event) {
+
+			readOnlyLength = $('#notes_note').val().length;
+		//alert("test value "+readOnlyLength);
+	});
+
+	$('#notes_note').on('keypress, keydown', function(event) {
+		//if(count == 1)
+		//	readOnlyLength = $('#notes_note').val().length;
+		//alert("test value "+readOnlyLength);
+		//count++;
+		//alert("test value "+readOnlyLength);
+	    var $field = $(this);
+	    $('#output').text(event.which + '-' + this.selectionStart);
+	    if ((event.which != 37 && (event.which != 39))
+	        && ((this.selectionStart < readOnlyLength)
+	        || ((this.selectionStart == readOnlyLength) && (event.which == 8)))) {
+	        return false;
+	    }
+	});
+
+
+var height = (screen.height*0.32);
+//alert(height);
+
+    var heightext = height+"px";
+
+// var calcDataTableHeight = function() {
+//     return $(window).height()*55/100;
+// };
+// var oTable = $('#reqAllRequestsTable').dataTable({
+//     "sScrollY": calcDataTableHeight()});
+// $(window).resize(function () {
+// var oSettings = oTable.fnSettings();
+// oSettings.oScroll.sY = calcDataTableHeight();
+// oTable.fnDraw();
+// });
+
+	  var table = $('#table_id').dataTable({
+		  "aoColumnDefs": [ {
+			  "targets": [ 5 ],
+			  "visible": false,
+			  "searchable": false
+			  },{
+				  "targets": [ 6 ],
+				  "visible": false,
+				  "searchable": false
+				  },{
+					  "targets": [7 ],
+					  "visible": false,
+					  "searchable": false
+					  },{
+						  "targets": [ 8 ],
+						  "visible": false,
+						  "searchable": false
+						  },{
+							  "targets": [ 9 ],
+							  "visible": false,
+							  "searchable": false
+							  },{
+								  "targets": [ 10 ],
+								  "visible": false,
+								  "searchable": false
+								  },{
+									  "targets": [ 11 ],
+									  "visible": false,
+									  "searchable": false
+									  },{
+										  "targets": [ 12 ],
+										  "visible": false,
+										  "searchable": false
+										  },{
+											  "targets": [ 13 ],
+											  "orderable": false
+											  },{
+												  "targets": [14 ],
+												  "visible": false,
+												  "searchable": false
+												  },
+              { "sType": "title-string", "aTargets": [ 4 ] }
+	           ],
+ 	       "scrollY": heightext,
+	        "scrollX": "100%",
+	        "scrollCollapse": true,
+
+	        "paging": false,
+	        "dom": 'C<"clear">lfrtip' });
+
+
+	  $( '#table_id tbody tr' ).on( "click", rowSelect );
+
+	  $("#riskDescription").css('display','none');
+	  $("#envCodEffTable").css('display','none');
+
+
+	// Select the first row in the table automatically
+
+	  $( "#table_id tbody tr:first-child " ).trigger( 'click' );
+	//  $("#table_id tr:eq(0) td:first-child span").click();
+	//  $('#table_id tbody tr:eq(0)').trigger('click');
+
+	$('#table_id tbody')
+        .on( 'mouseover', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+
+            if ( colIdx !== lastIdx ) {
+                $( table.cells().nodes() ).removeClass( 'highlight' );
+                $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+            }
+        } )
+        .on( 'mouseleave', function () {
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+        } );
+
+	var selectedDepartmentId = $("#selectedDepartmentId")
+	.val();
+	if (typeof (selectedDepartmentId) === "undefined"
+	|| selectedDepartmentId == '') {
+
+	$("#deptSelector1").val;
+
+	} else {
+
+	$("#deptSelector1").val(selectedDepartmentId);
+
+	}
+
+
+	   function rowSelect() {
+							var decision = table.fnGetData(this)[5];
+							$("#decision").text("");
+
+							if (decision == 'GO') {
+								$('#decision')
+										.append(
+												'<img id="theImg" src="images/Go.png" width="40" height="40" />');
+							} else if (decision == 'NOGO') {
+								$('#decision')
+										.append(
+												'<img id="theImg" src="images/NoGo.png" width="40" height="40" />');
+							} else if (typeof (decision) === "undefined") {
+								$('#decision').append('<br />');
+							}
+
+							var releaseName = table.fnGetData(this)[6];
+							$("#riskLevel2").text("Release " + releaseName);
+							$("#riskLevel3").text("Release " + releaseName);
+
+							if ($(this).hasClass('selected')) {
+								$(this).removeClass('selected');
+							} else {
+								table.$('tr.selected').removeClass('selected');
+								$(this).addClass('selected');
+							}
+							var releasePhase = table.fnGetData(this)[3];
+							$("#Phase").text("Phase : " + releasePhase);
+							var gaugeOptions = {
+								width : 180,
+								height : 180,
+								min : -100,
+								max : 100,
+								greenFrom : -100,
+								greenTo : 0,
+								yellowFrom: 0,
+								yellowTo : 25,
+								redFrom : 25,
+								redTo : 100,
+								minorTicks : 10,
+								majorTicks : [ "-100%", "-75", "-50", "-25",
+										"0", "25", "50", "75", "100" ]
+							};
+							var gauge;
+
+							function drawGauge(dir) {
+// 								gaugeData = new google.visualization.DataTable();
+// 								gaugeData.addColumn('number', '');
+
+// 								gaugeData.addRows(1);
+// 								gaugeData.setCell(0, 0, dir);
+
+// 								gauge = new google.visualization.Gauge(document
+// 										.getElementById('gauge_div'));
+// 								//alert("after div");
+// 								if (dir == 99999) {
+// 									$("#gauge_div").text("");
+// 									gauge.clearChart();
+// 								} else {
+
+// 									gauge.draw(gaugeData, gaugeOptions);
+// 								}
+
+
+$( "#decision" ).effect( "slide", 300 );
+    $( "#effortText" ).effect( "slide", 300 );
+    $( "#envText" ).effect( "slide", 300 );
+    $( "#codeText" ).effect( "slide", 300 );
+    $( "#riskImage" ).effect( "slide", 300 );
+								var chart = c3.generate({
+									bindto: '#gauge_div',
+									data: {
+								        columns: [
+								            ['Project Completion', dir]
+								        ],
+								        type: 'gauge',
+								        onclick: function (d, i) { console.log("onclick", d, i); },
+								        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+								        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+								    },
+								    gauge: {
+								        label: {
+								            format: function(value, ratio) {
+								                return value+'%';
+								            },
+								            show: true // to turn off the min/max labels.
+								        },
+								    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+								    max: 100, // 100 is default
+								   // units: ' %',
+								   // width: 39 // for adjusting arc thickness
+								    },
+								    color: {
+								        pattern: [], // the three color levels for the percentage values.'#B4E35D','#FFB83D', '#CF4449
+								        threshold: {
+								         //   unit: 'value', // percentage is default
+								          //  max: 200, // 100 is default
+								            values: [0, 25, 100]
+								        }
+								    },
+								    size: {
+								        height: 180
+								    }
+								});
+							}
+							// SAIKAT ADDITION
+							var percentCompletion = table.fnGetData(this)[14];
+							if(percentCompletion == "") {
+								drawGauge(99999);
+								$("#gauge_div1").html("<br/>");
+								$("#gauge_div1").append("<br/>");
+								$("#gauge_div1").append("<br/>");
+								$("#gauge_div1").append("No data available");
+							}
+							else if(!(percentCompletion == "")) {
+								$("#gauge_div1").text("");
+								drawGauge(percentCompletion);
+							}
+							//--------------//
+							/*
+							var schVarPercentage = table.fnGetData(this)[7];
+							if (schVarPercentage == "") {
+								drawGauge(99999);
+								$("#gauge_div1").html("<br/>");
+								$("#gauge_div1").append("<br/>");
+								$("#gauge_div1").append("<br/>");
+								$("#gauge_div1").append("No data available");
+
+							} else if (!(schVarPercentage == "")) {
+								$("#gauge_div1").text("");
+								drawGauge(schVarPercentage);
+							}
+							*/
+							var riskDescription = table.fnGetData(this)[8];
+							var releaseStatus = table.fnGetData(this)[9];
+
+							var environmentStatus = table.fnGetData(this)[10];
+							var codeStatus = table.fnGetData(this)[11];
+							var effortStatus = table.fnGetData(this)[12];
+
+							if (typeof (riskDescription) === "undefined") {
+
+								$("#riskImage").text("");
+								$("#riskDescription").text("");
+								$("#riskDescription").css('display', 'block');
+								if (releaseStatus == '1') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/checkmark_64.png" />');
+								} else if (releaseStatus == '2') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/warning_64.png" />');
+								} else if (releaseStatus == '3') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/error_64.png" />');
+								}
+								$("#riskDescription").text("No data available");
+							} else {
+								$("#riskImage").text("");
+								$("#riskDescription").text("");
+								$("#riskDescription").css('display', 'block');
+								if (releaseStatus == '1') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/checkmark_64.png" />');
+								} else if (releaseStatus == '2') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/warning_64.png" />');
+								} else if (releaseStatus == '3') {
+									$('#riskImage')
+											.prepend(
+													'<img id="theImg" src="images/error_64.png" />');
+								}
+								$("#riskDescription").html("Description:<br/>");
+								$("#riskDescription").append("</br>");
+								$("#riskDescription").append(
+										riskDescription);
+							}
+
+							// Environment  1-Green/ 2 - amber / 3-red
+							$("#envCodEffTable").css('display', 'block');
+							if (environmentStatus == '1') {
+								$('#envText').css('background-color',
+										'rgb(180, 227, 93)');
+							} else if (environmentStatus == '2') {
+								$('#envText').css('background-color',
+										' rgb(255, 184, 61)');
+							} else if (environmentStatus == '3') {
+								$('#envText').css('background-color',
+										'rgb(207, 68, 73)');
+							}
+
+							// Code
+							if (codeStatus == '1') {
+								$('#codeText').css('background-color',
+										'rgb(180, 227, 93)');
+							} else if (codeStatus == '2') {
+								$('#codeText').css('background-color',
+										' rgb(255, 184, 61)');
+							} else if (codeStatus == '3') {
+								$('#codeText').css('background-color',
+										'rgb(207, 68, 73)');
+							}
+							// Effort
+							if (effortStatus == '1') {
+								$('#effortText').css('background-color',
+										'rgb(180, 227, 93)');
+							} else if (effortStatus == '2') {
+								$('#effortText').css('background-color',
+										' rgb(255, 184, 61)');
+							} else if (effortStatus == '3') {
+								$('#effortText').css('background-color',
+										'rgb(207, 68, 73)');
+							}
+						}
+
+
+
+						function formatJSONDate(jsonDate) {
+							console.log(jsonDate);
+							console.log("After Subsctring : "
+									+ jsonDate.substr(9));
+							var newDate = new Date(parseInt(jsonDate.substr(9)));
+							console.log("After assiging Ne Date : " + newDate);
+							return newDate;
+						}
+
+						/*google.setOnLoadCallback(drawChart);*/
+
+						function drawChart(date1, date2, date3, date4,
+								releasePhase) {
+							var container = document.getElementById('example1');
+
+							var chart = new google.visualization.Timeline(
+									container);
+
+							var dataTable = new google.visualization.DataTable();
+
+							dataTable.addColumn({
+								type : 'string',
+								id : 'President'
+							});
+							dataTable.addColumn({
+								type : 'string',
+								id : 'Name'
+							});
+							dataTable.addColumn({
+								type : 'date',
+								id : 'Start'
+							});
+							dataTable.addColumn({
+								type : 'date',
+								id : 'End'
+							});
+
+							$("#Phase").text(releasePhase);
+							if ((date1[0] == "0" || date2[0] == "0")
+									&& (date3[0] == "0" || date4[0] == "0")) {
+								$("#example1").text("No data available");
+							}
+
+							else if (date1[0] == "0" || date2[0] == "0") {
+								dataTable.addRows([
+
+								[
+										'2',
+										' Actual',
+										new Date(date3[0], date3[1], date3[2]
+												.substring(0, 2)),
+										new Date(date4[0], date4[1], date4[2]
+												.substring(0, 2)) ] ]);
+
+								var options = {
+									timeline : {
+										showRowLabels : false
+									}
+								};
+
+								chart.draw(dataTable, options);
+							}
+
+							else if (date3[0] == "0" || date4[0] == "0") {
+								dataTable.addRows([
+
+								[
+										'1',
+										' Scheduled',
+										new Date(date1[0], date1[1], date1[2]
+												.substring(0, 2)),
+										new Date(date2[0], date2[1], date2[2]
+												.substring(0, 2)) ] ]);
+
+								var options = {
+									timeline : {
+										showRowLabels : false
+									}
+								};
+
+								chart.draw(dataTable, options);
+							}
+
+							else {
+								dataTable
+										.addRows([
+												[
+														'1',
+														' Scheduled',
+														new Date(
+																date1[0],
+																date1[1],
+																date1[2]
+																		.substring(0,2)),
+														new Date(
+																date2[0],
+																date2[1],
+																date2[2]
+																		.substring(0,2)) ],
+												[
+														'2',
+														' Actual',
+														new Date(
+																date3[0],
+																date3[1],
+																date3[2]
+																		.substring(0,2)),
+														new Date(
+																date4[0],
+																date4[1],
+																date4[2]
+																		.substring(0,2)) ] ]);
+
+								var options = {
+									timeline : {
+										showRowLabels : false
+									}
+								};
+
+								chart.draw(dataTable, options);
+							}
+
+						}
+						$("#notesSubmit").click(function()
+								{
+						$("#form1").submit(function(e)
+								{
+
+							var notes = $("#notes_note").val();
+							if(notes === ''){
+											$("#notesError").text("");
+												$("#notesError").text("Please enter Notes");
+												$("#notesError").css("color","red");
+												return false;
+								}
+									var postData = $(this).serializeArray();
+									var formURL = $(this).attr("action");
+									$.ajax(
+									{
+										url : formURL,
+										type: "POST",
+										data : postData,
+										dataType:"json",
+										success:function(data, textStatus, jqXHR)
+										{
+											div_hide();
+										},
+										error: function(jqXHR, textStatus, errorThrown)
+										{
+											alert("textStatus: "+textStatus);
+											alert("errorThrown: "+errorThrown);
+										}
+									});
+								    e.preventDefault();	//STOP default action
+								});
+						$("#form1").submit(); //SUBMIT FORM
+							});
+					});
+</script>
+<script>
+
+
+function getReleaseNotes(releaseName,releaseId){
+	$.getJSON("json/loadReleaseNotesForRelease.action",{
+		releaseId : releaseId,releaseName:releaseName
+	}, function(jsonResponse) {
+		div_show(jsonResponse.note,jsonResponse.releaseName,jsonResponse.releaseId);
+	});
+}
+
+function onChangeDept(){
+	var departmentId = $(
+			"#deptSelector1 option:selected")
+			.val();
+	if (departmentId == '0') {
+		var action = "home.action";
+		$('form').get(0).setAttribute(
+				'action', action); //this works
+		$('#mainForm').submit();
+	} else {
+		var action = "/Performance/listSystemAndReleases.action?deptID="
+				+ departmentId;
+		$('form').get(0).setAttribute(
+				'action', action); //this works
+				$('#mainForm').submit();
+	}
+}
+</script>
+</head>
+<body style="margin: 0px; padding: 0px; font-family: Helvetica;" class="">
+<form id="mainForm">
+	<div id="header">
+		<div style="text-align: left; font-family: &#39;Open Sans&#39;, Helvetica, sans-serif; color: #d3eced; letter-spacing: 1px;">
+			<font face="Helvetica" color="#d3eced" size="5px">
+
+ <img style="margin: 0;position:fixed;left: -3%;top: 2%;" src="./Dashboard_files/PerformanceDashboard21.png" alt="Functional QA Dashboard" width="30%" height="3.5%" align="top">
+			<img style="margin: 0; padding-top: 0.5%; padding-right: 1%" src="./Dashboard_files/WDPR.PNG" alt="Cognizant" height="7%" width="10%" align="right">
+			</font>
+
+<nav>
+  <ul class="nav">
+    <li><a href="Dashboard.html">Home</a> </li>
+    <li><a href="ReleaseView.html">Release View</a> </li>
+    <li><a href="ProjectView.html" target="_top">Project View Dashboard</a></li>
+
+
+		<!--		<li><a href="http://10.51.25.197:8097/Performance/login.action#">Admin</a>
+					<ul style="color: white; size: 11px">
+						<li><a href="http://10.51.25.197:8097/Performance/Administration.jsp">Configure
+										Tracks </a></li>
+						<li><a href="http://10.51.25.197:8097/Performance/viewUsers.action" target="_top">User
+										Management</a></li>
+						<li><a href="http://10.51.25.197:8097/Performance/viewProjects.action" target="_top">Configure
+										Projects </a></li>
+
+						<li><a href="http://10.51.25.197:8097/Performance/viewRisks.action" target="_top">Configure Risks
+						</a></li>
+
+						<li>
+
+									 <a href="http://10.51.25.197:8097/Performance/download1.action">Export Report to excel</a>
+						</li>
+					</ul>
+				</li> -->
+
+
+  </ul>
+  <div id="banner">
+					Welcome
+					User
+
+				</div>
+				<div id="banner2">
+				<a href="http://10.51.25.197:8097/Performance/loadChangePassword.action" target="_top"><span style="color: white; size: 11px">Change Password</span> </a>
+
+					<span style="color: grey; size: 11px">	|</span>
+				<a href="http://10.51.25.197:8097/Performance/logout.action"><span style="color: white; size: 11px">Logout</span></a>
+
+				</div>
+</nav>
+
+
+
+		</div>
+
+	</div>
+
+	<div class="loader" style="display: none;"></div>
+<div class="divLast">
+<!-- <div id="riskLevel">Application Health</div> -->
+<div id="scheduleVariation" style="z-index: -2;">
+<div id="riskLevel2">Release 3</div>
+<div id="scheduleVariationHead" style="width: ; height: ;">Test Coverage Completion</div>
+<!-- <div id="Phase" style="width: ; height: ;"></div> -->
+ <div id="gauge_div" style="width: 200px; height: 200px;"></div>
+
+
+</div>
+<!-- <div id="example1" style="width: auto; height: 200px;"></div> -->
+<!-- <div id="schVarPercentage" ></div> -->
+</div>
+<div class="v-separator"></div>
+<div id="risk" style="z-index: -2;">
+<div id="riskLevel3">Release 3</div>
+	<div id="riskLevel">Risk Level and Key Defects</div>
+	<div id="riskImage"><img id="theImg" src="./Dashboard_files/checkmark_64.png"></div>
+	<div id="riskDescription" style="display: block;">Description:<br><br>Received Go. TDM Issues delay datagen</div>
+</div>
+ <div class="v-separator"></div>
+<div id="EnvCodeEffort" style="z-index: -2;">
+<div id="health">Release Health</div>
+<div id="decision"><img id="theImg" src="./Dashboard_files/Go.png" width="40" height="40"></div>
+<table id="envCodEffTable" border="0" cellpadding="0" cellspacing="0" style="display: block;">
+
+	<thead>
+		<tr>
+			<th>Environment Readiness</th>
+			<th>Test Script/Data prep. Status</th>
+			<th>Execution Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><div id="envText" style="background-color: rgb(180, 227, 93);"></div></td>
+			<td><div id="codeText" style="background-color: rgb(180, 227, 93);"></div></td>
+			<td><div id="effortText" style="background-color: rgb(180, 227, 93);"></div></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+<input type="hidden" name="" value="" id="selectedDepartmentId">
+
+<div id="deptSelector" style="z-index: -1;">
+<!--<label for="speed"><b>Track :</b> </label>
+<select id="deptSelector1" name="deptID" style="" onchange="onChangeDept()">
+		<option value="0">Select Track</option>
+
+
+				<option value="23">Digital</option>
+
+				<option value="24">MMPlus</option>
+
+				<option value="25">NonCore</option>
+
+				<option value="26">Composite</option>
+
+</select>
+-->
+
+
+
+
+
+</div>
+
+
+<div id="center_Content" style="">
+		<table border="0" width="100%">
+			<tbody><tr>
+
+<td>
+<div id="table_id_wrapper" class="dataTables_wrapper no-footer"><div class="clear"></div>
+<!--<div id="table_id_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="table_id"></label></div> -->
+<div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1274px; padding-right: 0px;"><table class="cell-border dataTable no-footer" border="0" cellpadding="0" cellspacing="0" role="grid" style="margin-left: 0px; width: 1274px;"><thead>
+		<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" style="width: 204px;" aria-sort="ascending" aria-label="Project: activate to sort column descending">Project</th><th class="sorting" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" style="width: 207px;" aria-label="Releases: activate to sort column ascending"><a href="http://10.51.25.197:8097/Performance/home.action" target="_top"></a>Releases</th><th class="sorting" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" style="width: 204px;" aria-label="Go Live Date: activate to sort column ascending">Go Live Date</th><th class="sorting" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" style="width: 205px;" aria-label="Phase: activate to sort column ascending">Phase</th><th class="sorting" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" style="width: 205px;" aria-label="Status: activate to sort column ascending">Status</th></tr>
+	</thead></table></div></div><div class="dataTables_scrollBody" style="overflow: auto; height: 110px; width: 100%;"><table id="table_id" class="cell-border dataTable no-footer" border="0" cellpadding="0" cellspacing="0" role="grid" aria-describedby="table_id_info" style="width: 1274px;"><thead>
+		<tr role="row" style="height: 0px;"><th class="sorting" aria-controls="table_id" rowspan="1" colspan="1" style="width: 204px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Project</div></th><th class="sorting" aria-controls="table_id" rowspan="1" colspan="1" style="width: 207px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;"><a href="http://10.51.25.197:8097/Performance/home.action" target="_top"></a>Releases</div></th><th class="sorting" aria-controls="table_id" rowspan="1" colspan="1" style="width: 204px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Go Live Date</div></th><th class="sorting" aria-controls="table_id" rowspan="1" colspan="1" style="width: 205px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Phase</div></th><th class="sorting" aria-controls="table_id" rowspan="1" colspan="1" style="width: 205px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Status</div></th></tr>
+	</thead>
+
+	<tbody>
+
+
+
+
+
+
+
+	<tr role="row" class="odd selected">
+			<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align:left;" class="sorting_1"><a href="http://10.51.25.197:8097/Performance/listSystemReleases.action?systemName=Composite&amp;sysID=248&amp;deptID=26" target="_top">Composite</a></td>
+				<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align: left; font-weight: bold;font-size: 1.2em;">
+				<!--<a href="Dashboard - Releases.html" target="_top">Release 3</a>-->
+				<a href="" target="_top">Release 3</a>
+				<a style="font-size: 12px;font-family: Helvetica;text-align:right; float: right;" class="edit" href="http://10.51.25.197:8097/Performance/editRelease.action?systemID=248&amp;addOrEdit=edit&amp;deptID=26&amp;releaseID=400" target="_top"><img border="0" src="./Dashboard_files/stock_edit.png" width="20" height="20"></a>
+				</td>
+
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Jul-29-2016</td>
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Test Execution</td>
+				<td width="20%" class="center" style="font-size: 8px;text-align:center;"><img src="./Dashboard_files/1.png" height="20" width="20" alt="status" title="1"></td>
+
+			</tr><tr role="row" class="even">
+			<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align:left;" class="sorting_1"><a href="http://10.51.25.197:8097/Performance/listSystemReleases.action?systemName=Digital&amp;sysID=254&amp;deptID=23" target="_top">Digital</a></td>
+				<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align: left; font-weight: bold;font-size: 1.2em;">
+				<a href="http://10.51.25.197:8097/Performance/listReleaseRuns.action?relName=PEPCOM%202.21&amp;relID=404&amp;sysID=254&amp;deptID=23" target="_top">Release 2</a>
+				<a style="font-size: 12px;font-family: Helvetica;text-align:right; float: right;" class="edit" href="http://10.51.25.197:8097/Performance/editRelease.action?systemID=254&amp;addOrEdit=edit&amp;deptID=23&amp;releaseID=404" target="_top"><img border="0" src="./Dashboard_files/stock_edit.png" width="20" height="20"></a>
+				</td>
+
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Jul-27-2016</td>
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Test Scripting</td>
+				<td width="20%" class="center" style="font-size: 8px;text-align:center;"><img src="./Dashboard_files/1.png" height="20" width="20" alt="status" title="1"></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</tr>
+			<!--<tr role="row" class="odd">
+			<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align:left;" class="sorting_1"><a href="http://10.51.25.197:8097/Performance/listSystemReleases.action?systemName=MM%20Plus&amp;sysID=256&amp;deptID=24" target="_top">MM Plus</a></td>
+				<td width="20%" style="font-size: 12px;font-family: Helvetica;text-align: left; font-weight: bold;font-size: 1.2em;">
+				<a href="http://10.51.25.197:8097/Performance/listReleaseRuns.action?relName=MMPlus16.10&amp;relID=405&amp;sysID=256&amp;deptID=24" target="_top">MMPlus16.10</a>
+				<a style="font-size: 12px;font-family: Helvetica;text-align:right; float: right;" class="edit" href="http://10.51.25.197:8097/Performance/editRelease.action?systemID=256&amp;addOrEdit=edit&amp;deptID=24&amp;releaseID=405" target="_top"><img border="0" src="./Dashboard_files/stock_edit.png" width="20" height="20"></a>
+				</td>
+
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Aug-03-2016</td>
+				<td width="20%" class="center" style="font-size: 12px;font-family: Helvetica;text-align:center;">Test Execution</td>
+				<td width="20%" class="center" style="font-size: 8px;text-align:center;"><img src="./Dashboard_files/1.png" height="20" width="20" alt="status" title="1"></td>
+			</tr>-->
+
+			</tbody>
+</table></div></div><div class="dataTables_info" id="table_id_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div></div>
+</td>
+
+			</tr>
+		</tbody></table>
+
+		</div>
+
+			</form>
+<div id="abc">
+<div id="popupContact" style="z-index: 100;">
+<form action="http://10.51.25.197:8097/Performance/addReleaseNotes.action" id="form1" method="post" name="form1">
+<img id="close" src="./Dashboard_files/Delete-icon2.png" onclick="div_hide()">
+<h2 style="margin-top: -45px">Notes</h2>
+<hr>
+<div id="notesError"></div>
+<input id="notes_release" name="notes_release" readonly="" placeholder="Release Name" type="text">
+<input id="releaseId" name="releaseId" hidden="">
+<textarea id="notes_note" name="note" placeholder="Enter Notes" style="width:100%;heigth:100%;"></textarea>
+
+<!-- <textarea id="field" type="text"  size="50" >"CAN'T TOUCH THIS!"</textarea> -->
+
+<!-- <div id="output"> -->
+<!-- </div> -->
+
+<a href="http://10.51.25.197:8097/Performance/login.action#" id="notesSubmit"><span class="label label--black label--cursor" style="padding: 1em;color:white;position: fixed;">Save</span></a>
+</form>
+</div>
+</div>
+ <div id="footer" class="color">
+
+
+
+
+
+<div id="footer" class="color">
+		<table width="100%" align="center">
+			<tbody><tr>
+				<td>
+
+
+
+
+
+
+
+
+<title>Important Links</title>
+<link rel="stylesheet" href="./Dashboard_files/main.css" type="text/css">
+
+
+
+<table width="100%">
+<tbody><tr>
+<!-- <td>
+		<img src="images/CTS_logo.png" alt="Cognizant" height="30" width="30" align="left" />
+</td> -->
+
+<td align="center">
+
+</td>
+<td>
+		<li class="green"><a href="http://10.51.25.197:8097/Performance/addNewLink.action" target="_top" class="footerItem"><img border="0" src="./Dashboard_files/document_add_24.png" width="20" height="15">Add New Link</a>
+		</li>
+</td>
+<!-- <td>
+	<img src="images/Comcast logo 2012.png" alt="Cognizant" height="30" width="50" align="left" />
+</td> -->
+</tr>
+</tbody></table>
+
+
+				</td>
+			</tr>
+		</tbody></table>
+</div>
+</div>
+
+
+
+</body></html>

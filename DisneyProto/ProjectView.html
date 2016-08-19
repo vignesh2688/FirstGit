@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['line' , 'corechart' , 'bar', 'gauge']});
+      //  google.charts.load('current', {'packages':['line']});
+          google.charts.setOnLoadCallback(drawLineChart);
+          google.charts.setOnLoadCallback(drawPieChart);
+           google.charts.setOnLoadCallback(drawPieChart2);
+          google.charts.setOnLoadCallback(drawTrendChart);
+          google.charts.setOnLoadCallback(drawProdChart);
+
+
+
+
+
+       function drawLineChart() {
+
+         var data = new google.visualization.DataTable();
+         data.addColumn('number', 'Week in 2016');
+         data.addColumn('number', 'Planned');
+         data.addColumn('number', 'Actual');
+        // data.addColumn('number', 'Transformers: Age of Extinction');
+
+         data.addRows([
+           [24,  12000, 11800],
+           [25,  13000, 12500],
+           [26,  15000,   14800],
+           [27,  18000, 17000],
+           [28,  21000, 19000],
+           [29,   21000, 19000],
+           [30,   21000, 19000],
+           [31,  28000, 27000],
+           [32,  33000, 32000],
+           [33, 35000, 34000],
+           [34,  36000,  35800],
+           [35,  37000,  36000],
+           [36,  38000,  37000],
+           [37,  39000,  38000]
+         ]);
+
+         var options = {
+           chart: {
+             title: 'Test Execution Trend Planned Vs Actual',
+             subtitle: 'Count'
+           },
+           width: 700,
+           height: 350
+         };
+
+         var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+         chart.draw(data, options);
+    }
+
+
+  function drawPieChart() {
+			document.getElementById("piechart_3d").style.padding = "0px 40px 20px 0px";
+  	         var data = google.visualization.arrayToDataTable([
+  	           ['Task', 'Hours per Day'],
+  	           ['Covered',     18],
+  	           ['Not Covered',      1]
+  	         ]);
+
+  	         var options = {
+  	           title: 'Test Execution Coverage',
+  	            width: 400,
+          		height: 350,
+  	           is3D: true
+
+  	         };
+
+  	         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+
+  	         chart.draw(data, options);
+      }
+
+
+	 function drawPieChart2() {
+			document.getElementById("piechart_3d").style.padding = "0px 40px 20px 0px";
+  	         var data = google.visualization.arrayToDataTable([
+  	           ['Task', 'Hours per Day'],
+  	           ['Passed',     18],
+  	           ['Failed',     2],
+  	           ['No Run',     1],
+  	           ['Not Completed',     1],
+  	           ['Blocked',      2],
+  	           ['N/A',      3]
+  	         ]);
+
+  	         var options = {
+  	           title: 'Pass Fail Count',
+  	            width: 360,
+          		height: 350,
+  	           is3D: true
+
+  	         };
+
+  	         var chart = new google.visualization.PieChart(document.getElementById('piechart2_3d'));
+
+  	         chart.draw(data, options);
+      }
+
+
+ function drawTrendChart() {
+         var data = google.visualization.arrayToDataTable([
+           ['Execution Date 2016', 'Passed', 'Failed', 'No Run', 'Not Completed' , 'Blocked', 'NA'],
+           ['13 June', 80, 10, 5, 7,5,0],
+           ['14 June', 70, 8, 4, 2,0,0],
+           ['15 June', 90, 6, 3, 1,2,0],
+           ['16 June', 85, 4, 2, 3,1,1]
+         ]);
+
+         var options = {
+           chart: {
+             title: 'Test Case Execution Trend',
+             subtitle: 'Count',
+           },
+          // bars: 'horizontal' // Required for Material Bar Charts.
+         };
+
+         var chart = new google.charts.Bar(document.getElementById('bar_div'));
+
+         chart.draw(data, options);
+      }
+
+function drawProdChart() {
+
+  document.getElementById("prod_div").style.padding = "0px 0px 20px 60px";
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Exec/PD', 70]
+
+        ]);
+
+        var options = {
+          title: 'Test Execution Productivity',
+          width: 250, height: 200,
+          yellowFrom: 0, yellowTo: 50,
+          greenFrom: 50, greenTo: 100,
+          minorTicks: 0
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('prod_div'));
+
+        chart.draw(data, options);
+
+
+      }
+
+    </script>
+<style>
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+
+}
+
+.button2 {background-color: #008CBA;}
+
+h4 {
+    text-align: center;
+}
+
+</style>
+
+  </head>
+  <body>
+
+
+
+
+  <input type="button" value="Clear All" style="float: right;" class="button button2">
+  <input type="button" value="Filter" class="button button2" style="float: right;">
+
+  <br>  <br>  <br>
+	<table><tr>
+    <td><div id="chart_div" style="width: 700px; height: 320px;"></div></td>
+     <td><div id="piechart_3d" style="width: 360px; height: 320px;"></div></td>
+	<td><div id="piechart2_3d" style="width: 360px; height: 320px;"></div></td>
+	<td><br><br>
+	<h4><b>Test Execution Productivity</b></h4><br>
+	<div id="prod_div" style="width: 250px; height: 350px;"></div></td>
+	</tr></table>
+
+	<br><br>
+	<input type="button" value="View Table" class="button button2" style="float: right;"><br>
+	<table><tr>
+    <td>
+		<div id="bar_div" style="width: 750px; height: 300px;"></div>
+    </td></tr></table>
+
+<br>
+
+
+  </body>
+</html>
