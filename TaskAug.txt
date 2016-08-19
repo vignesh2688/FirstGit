@@ -1,0 +1,59 @@
+3/8
+iOS: 
+Notification Testing: 
+Seattle's-iPad Air - Today, Nightly Tested - Working
+Seattle-iPhone6 - Not able to install app from hockey app - Both connected to same device
+
+Android: 
+Nexus 5 - Offline
+
+
+iOS: 
+Seattle's-iPad Air - Notification 2 apps success
+Seattle-iPhone 6 - Not able to install app 
+Seattle-iPhone 6Plus - 2 apps success
+
+Hi Mahesh,
+
+	Performed Push Notifications in Mobile Labs devices as well. 
+
+We can see only 4 devices assigned to News(Seattle)
+Android: 
+1. Nexus 5 - Offline most of the time. When it got switched on, the rendering is bad.
+
+iOS:
+1. Seattle-iPhone 6Plus
+2. Seattle's-iPad Air
+3. Seattle-iPhone 6 - Not able to download application. 
+
+8/4
+* ipad Pro test in mobilelabs  - Password protected 
+* alerts and notifications, cards wiki clarifications  -  
+* tickets in current sprint reg to notifications  - 
+
+
+Notifications:
+1/8 - Notifications Testing in iOS across device
+2/8 - Smoke Testing in iOS across device All 3 apps
+3/8 - Alerts and push notification testing on iOS - Mobile Labs  
+4/8 - Requirement Analysis - Cards, Alerts and Notifications
+5/8 - Regression Nexus 5 and Kindle Fire - Today and Nightly
+8/8 - Regression Samusung Tab 10.1 - TODAY and Nightly
+9/8 - Regression Samsung S6 - Today and Nightly
+10/8 - Geny Motion Emulator Setup
+11/8 - Geny Motion Emulator - TOday and NIghtly
+12/8 - Geny Motion Emulator - TOday and NIghtly
+
+15/8 - Independence Day
+16/8 - Content Testing Android - Nexus 5 and Samsung Tab 10.1
+17/8 - Content Testing Android - HTC and Kindle
+18/8 - Content Testing iOS iPad Air 2
+19/8 - 
+
+
+Reg:
+5/8 - Regression Nexus 5 and Kindle Fire - Today and Nightly
+8/8 - Regression Samusung Tab 10.1 - TODAY and Nightly
+9/8 - Regression Samsung S6 - Today and Nightly
+
+Done
